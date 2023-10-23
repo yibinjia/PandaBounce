@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Bounce User Interface</title>
+    <style type="text/css">
+        body {
+          margin: 0;
+          background-color: rgb(53, 48, 48);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+        canvas {
+          border: 0px solid snow;
+        }
+      </style>
+</head>
+<body>
+    <canvas id="UI" width="1024" height="576"></canvas>
+    <script>
+      const canvas = document.getElementById("UI");
+      const ctx = canvas.getContext("2d");
+      
+      const image = new Image();
+      image.src = "./img/UIBackground-2.jpg"; 
+
+      image.onload = function() {
+          ctx.drawImage(image, 0, 0); // 绘制图片到 canvas 的坐标 (0, 0)
+
+          //Start Button
+          const startBtnImage = new Image();
+          startBtnImage.src = "./img/startBtn.png";
+          startBtnImage.onload = function() {
+              ctx.drawImage(startBtnImage, 192, 384); // 绘制按钮图片到 canvas 的坐标 (192, 384)
+          };
+
+          //Practice Button
+          const practiceBtnImage = new Image();
+          practiceBtnImage.src = "./img/practiceBtn.png";
+          practiceBtnImage.onload = function() {
+              ctx.drawImage(practiceBtnImage, 448, 384);
+          };
+
+          //Info Button
+          const infoBtnImage = new Image();
+          infoBtnImage.src = "./img/infoBtn.png";
+          infoBtnImage.onload = function() {
+              ctx.drawImage(infoBtnImage, 704, 384); 
+          };
+          
+
+          // 添加按钮点击事件处理程序
+          canvas.addEventListener('click', function(e) {
+              const x = e.clientX - canvas.getBoundingClientRect().left;
+              const y = e.clientY - canvas.getBoundingClientRect().top;
+              if (x >= 192 && x <= 192 + startBtnImage.width && y >= 384 && y <= 384 + startBtnImage.height) {
+                // 跳转到start.html
+                //window.location.href = "start.html";
+                window.location.href = "http://localhost:3000/";
+              } else if (x >= 448 && x <= 448 + practiceBtnImage.width && y >= 384 && y <= 384 + practiceBtnImage.height) {
+                // 跳转到practice level.html
+                window.location.href = "practice_level.html";
+              } else if (x >= 704 && x <= 704 + infoBtnImage.width && y >= 384 && y <= 384 + infoBtnImage.height) {
+                // 跳转到info.html
+                window.location.href = "info.html";
+              }
+          });
+      };
+  </script>
+</body>
+</html>

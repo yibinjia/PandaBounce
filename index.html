@@ -25,7 +25,7 @@
       const ctx = canvas.getContext("2d");
       
       const image = new Image();
-      image.src = "./img/UIBackground-2.jpg"; 
+      image.src = "./img/UIBackground.jpg"; 
 
       image.onload = function() {
           ctx.drawImage(image, 0, 0); // 绘制图片到 canvas 的坐标 (0, 0)
@@ -62,7 +62,7 @@
                 window.location.href = "http://localhost:3000/";
               } else if (x >= 448 && x <= 448 + practiceBtnImage.width && y >= 384 && y <= 384 + practiceBtnImage.height) {
                 // 跳转到practice level.html
-                window.location.href = "practice_level.html";
+                window.location.href = "http://localhost:3006/";
               } else if (x >= 704 && x <= 704 + infoBtnImage.width && y >= 384 && y <= 384 + infoBtnImage.height) {
                 // 跳转到info.html
                 window.location.href = "info.html";

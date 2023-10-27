@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start Game</title>
+    <title>Info</title>
+    <style type="text/css">
+        body {
+          margin: 0;
+          background-color: rgb(53, 48, 48);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+        canvas {
+          border: 0px solid snow;
+        }
+      </style>
 </head>
 <body>
-    <h1>Info!</h1>
+    <canvas id="UI" width="1024" height="576"></canvas>
+    <script>
+        const canvas = document.getElementById("UI");
+        const ctx = canvas.getContext("2d");
+        const image = new Image();
+        image.src = "./img/Info.jpg"; 
+        image.onload = function() {
+          ctx.drawImage(image, 0, 0); // 绘制图片到 canvas 的坐标 (0, 0)
+        }
+    </script>
 </body>
 </html>

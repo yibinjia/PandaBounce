@@ -288,20 +288,6 @@ async function init() {
     y: canvas.height - lgPlatformImage.height - flagPoleImage.height,
     image: flagPoleImage
   })
-
-
-  /* fireFlowers = [
-    new FireFlower({
-      position: {
-        x: 400,
-        y: 100
-      },
-      velocity: {
-        x: 0,
-        y: 0
-      }
-    })
-  ] */
   
   player = new Player()
   const cockcroachWidth = 43.33

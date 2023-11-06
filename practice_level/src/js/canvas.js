@@ -19,7 +19,7 @@ import {
 
 import platform from '../img/level1/platform.png'
 import hillsClouds from '../img/level1/hillsClouds.png'
-import background from '../img/level1/background.jpg'
+import background from '../img/level1/background.png'
 import platformSmallTall from '../img/level1/platformSmallTall.png'
 import block from '../img/level1/block.png'
 import blockTri from '../img/level1/blockTri.png'
@@ -56,7 +56,7 @@ class Player {
   constructor() {
     this.speed = 4.2
     this.position = {
-      x: 100,
+      x: 400,
       y: 100
     }
     this.velocity = {
@@ -308,6 +308,12 @@ async function init() {
   cockroachs = []
   particles = []
   platforms = [
+    new Platform({
+      x: 0.2*canvas.width,
+      y: canvas.height-lgPlatformImage.height-block6Image.height,
+      image: block6Image,
+      block: true
+    }),
     //1-1
     new Platform({
       x: 0.5*canvas.width + 274/2,
@@ -316,581 +322,97 @@ async function init() {
       block: true
     }),
     new Platform({
-      x: 0.5*canvas.width + 274/2 + tPlatformImage.width + 150,
+      x: 1.5*canvas.width + 274/2 + tPlatformImage.width + 150,
       y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
       image: tPlatformImage,
       block: true
     }),
     new Platform({
-      x: 0.5*canvas.width + 274/2 + 2*tPlatformImage.width + 2*150,
+      x: 1.5*canvas.width + 274/2 + 2*tPlatformImage.width + 2*150,
       y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
       image: xtPlatformImage,
       block: true
     }),
     // 1-2
-    // 第一列
     new Platform({
-      x: 1.5*canvas.width + 98/2,
-      y: canvas.height-lgPlatformImage.height-blockImage.height,
+      x: 0.5*canvas.width + 248/2,
+      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
+      image: tPlatformImage,
+      block: true
+    }),
+    new Platform({
+      x: 0.5*canvas.width + 248/2 + tPlatformImage.width + 50,
+      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
       image: blockImage,
       block: true
     }),
-    // 第二列
     new Platform({
-      x: 1.5*canvas.width + 98/2 + blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    // 第三列
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 2*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    // 第四列
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 3*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    // 第五列
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 4*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block5Image.height,
-      image: block5Image,
-      block: true
-    }),
-    // 第六列
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 5*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
-      block: true
-    }),
-    //flyingplatform1
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 50,
-      y: canvas.height-lgPlatformImage.height-3*blockImage.height,
+      x: 0.5*canvas.width + 248/2 + tPlatformImage.width + blockImage.width + 200,
+      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
       image: blockImage,
-      block: true,
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 150,
-      y: canvas.height-lgPlatformImage.height-6*blockImage.height,
-      image: flyingPlatformImage,
-      block: true,
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + flyingPlatformImage.width + 2*150,
-      y: canvas.height-lgPlatformImage.height-6*blockImage.height,
-      image: flyingPlatformImage,
       block: true
     }),
-    //block6
     new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 2*flyingPlatformImage.width + 3*150,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
-      block: true
-    }),
-    //flyingplatform2
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 2*flyingPlatformImage.width + 3*150 + 100,
-      y: canvas.height-lgPlatformImage.height-4*blockImage.height,
+      x: 0.5*canvas.width + 248/2 + tPlatformImage.width + 2*blockImage.width + 275,
+      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
       image: blockImage,
-      block: true,
+      block: true
     }),
     new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 2*flyingPlatformImage.width + 4*150 + 100,
-      y: canvas.height-lgPlatformImage.height-2*blockImage.height,
+      x: 0.5*canvas.width + 248/2 + tPlatformImage.width + 3*blockImage.width + 400,
+      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
       image: blockImage,
-      block: true,
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 2*flyingPlatformImage.width + block6Image.width + 4*150,
-      y: canvas.height-lgPlatformImage.height-6*blockImage.height,
-      image: flyingPlatformImage,
       block: true
     }),
     new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 3*flyingPlatformImage.width + block6Image.width + 5*150,
-      y: canvas.height-lgPlatformImage.height-6*blockImage.height,
-      image: flyingPlatformImage,
-      block: true
-    }),
-    //block 654321
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 6*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
+      x: 0.5*canvas.width + 248/2 + tPlatformImage.width + 4*blockImage.width + 500,
+      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
+      image: xtPlatformImage,
       block: true
     }),
     new Platform({
-      x: 1.5*canvas.width + 98/2 + 7*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-block5Image.height,
-      image: block5Image,
+      x: 0.5*canvas.width + 248/2 + 2*tPlatformImage.width + 4*blockImage.width + 600,
+      y: canvas.height - lgPlatformImage.height - block3Image.height,
+      image: blockImage,
       block: true
     }),
     new Platform({
-      x: 1.5*canvas.width + 98/2 + 8*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 9*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 10*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    new Platform({
-      x: 1.5*canvas.width + 98/2 + 11*blockImage.width + 4*flyingPlatformImage.width + block6Image.width + 6*150,
-      y: canvas.height-lgPlatformImage.height-blockImage.height,
+      x: 0.5*canvas.width + 248/2 + 2*tPlatformImage.width + 5*blockImage.width + 725,
+      y: canvas.height - lgPlatformImage.height - block5Image.height,
       image: blockImage,
       block: true
     }),
     //1-3
     new Platform({
-      x: 3.5*canvas.width + 148/2 + 200,
-      y: canvas.height-lgPlatformImage.height-tPlatformImage.height,
-      image: blockTriImage,
-      block: true
-    }),
-    new Platform({
-      x: 3.5*canvas.width + 148/2 + 200 + blockTriImage.width + 100,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: tPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 3.5*canvas.width + 148/2 + 2*200 + blockTriImage.width + tPlatformImage.width + 100,
-      y: canvas.height-lgPlatformImage.height-tPlatformImage.height,
-      image: blockTriImage,
-      block: true
-    }),
-    new Platform({
-      x: 3.5*canvas.width + 148/2 + 2*200 + 2*blockTriImage.width + tPlatformImage.width + 2*100,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 3.5*canvas.width + 148/2 + 3*200 + 2*blockTriImage.width + 2*tPlatformImage.width + 2*100 + 2/3*blockTriImage.width,
-      y: canvas.height-lgPlatformImage.height-tPlatformImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 3.5*canvas.width + 148/2 + 3*200 + 3*blockTriImage.width + 2*tPlatformImage.width + 3*100,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    //1-4
-    new Platform({
-      x: 5.5*canvas.width + 398/2,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: tPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + tPlatformImage.width + 150,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + tPlatformImage.width + blockImage.width +2*150,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: tPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + 2*tPlatformImage.width + blockImage.width +3*150,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + 2*tPlatformImage.width + 2*blockImage.width +4*150,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + 3*tPlatformImage.width + 2*blockImage.width +5*150,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 5.5*canvas.width + 398/2 + 3*tPlatformImage.width + 3*blockImage.width +6*150,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    //1-5
-    new Platform({
-      x: 7.5*canvas.width + 248/2,
-      y: canvas.height - lgPlatformImage.height - blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 100 + blockImage.width,
-      y: canvas.height - lgPlatformImage.height - block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 2*100 + 2*blockImage.width,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 2*100 + 3*blockImage.width + 150,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: blockTriImage,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 2*100 + 3*blockImage.width + 2*150 + blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 3*100 + 4*blockImage.width + 2*150 + blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 3*100 + 5*blockImage.width + 3*150 + blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: blockTriImage,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 3*100 + 5*blockImage.width + 4*150 + 2*blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 4*100 + 6*blockImage.width + 4*150 + 2*blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 7.5*canvas.width + 248/2 + 5*100 + 7*blockImage.width + 4*150 + 2*blockTriImage.width,
-      y: canvas.height - lgPlatformImage.height - block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    // 1-6
-    new Platform({
-      x: 9.5*canvas.width + 268/2,
-      y: canvas.height - lgPlatformImage.height - blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + blockImage.width,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 2*blockImage.width,
-      y: canvas.height - lgPlatformImage.height - blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    // flyingPlatform 123 
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 2*blockImage.width + 120,
-      y: canvas.height - lgPlatformImage.height - block6Image.height,
-      image: flyingPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 2*blockImage.width + flyingPlatformImage.width + 2*120,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: flyingPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 2*blockImage.width + 2*flyingPlatformImage.width + 3*120,
-      y: canvas.height - lgPlatformImage.height - block6Image.height,
-      image: flyingPlatformImage,
-      block: true
-    }),
-    // blockTri block 1234
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 2*blockImage.width + 3*flyingPlatformImage.width + 4*120,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 3*blockImage.width + 3*flyingPlatformImage.width + 4*120,
-      y: canvas.height - lgPlatformImage.height - blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 3*blockImage.width + 3*flyingPlatformImage.width + 5*120,
-      y: canvas.height - lgPlatformImage.height - block5Image.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 4*blockImage.width + 3*flyingPlatformImage.width + 6*120,
-      y: canvas.height - lgPlatformImage.height - 7*blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 5*blockImage.width + 3*flyingPlatformImage.width + 7*120,
-      y: canvas.height - lgPlatformImage.height - block5Image.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 6*blockImage.width + 3*flyingPlatformImage.width + 8*120,
-      y: canvas.height - lgPlatformImage.height - 7*blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 9.5*canvas.width + 268/2 + 7*blockImage.width + 3*flyingPlatformImage.width + 9*120,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    // 1-7
-    new Platform({
-      x: 11.5*canvas.width + 248/2,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height,
-      image: tPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + tPlatformImage.width + 50,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + tPlatformImage.width + blockImage.width + 200,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + tPlatformImage.width + 2*blockImage.width + 275,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + tPlatformImage.width + 3*blockImage.width + 400,
-      y: canvas.height - lgPlatformImage.height - tPlatformImage.height - 150,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + tPlatformImage.width + 4*blockImage.width + 500,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + 2*tPlatformImage.width + 4*blockImage.width + 600,
-      y: canvas.height - lgPlatformImage.height - block3Image.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + 2*tPlatformImage.width + 5*blockImage.width + 725,
-      y: canvas.height - lgPlatformImage.height - block5Image.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + 2*tPlatformImage.width + 6*blockImage.width + 875,
-      y: canvas.height - lgPlatformImage.height - block4Image.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + 2*tPlatformImage.width + 7*blockImage.width + 950,
-      y: canvas.height - lgPlatformImage.height - 7*blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 11.5*canvas.width + 248/2 + 2*tPlatformImage.width + 8*blockImage.width + 1000,
-      y: canvas.height - lgPlatformImage.height - xtPlatformImage.height,
-      image: xtPlatformImage,
-      block: true
-    }),
-    // 1-8
-    // block 123456
-    new Platform({
-      x: 13.5*canvas.width + 448/2,
-      y: canvas.height-lgPlatformImage.height-blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 2*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 3*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 4*blockImage.width,
+      x: 2.5*canvas.width + 50,
       y: canvas.height-lgPlatformImage.height-block5Image.height,
-      image: block5Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 5*blockImage.width,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
-      block: true
-    }),
-    // 100 block 200 block
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 6*blockImage.width + 100,
-      y: canvas.height-lgPlatformImage.height-2*blockImage.height,
       image: blockImage,
       block: true
     }),
     new Platform({
-      x: 13.5*canvas.width + 448/2 + 7*blockImage.width + 100 + 150,
-      y: canvas.height-lgPlatformImage.height-4*blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    //block 654321
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 8*blockImage.width + 100 + 2*150,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 9*blockImage.width + 100 + 2*150,
-      y: canvas.height-lgPlatformImage.height-block5Image.height,
-      image: block5Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 10*blockImage.width + 100 + 2*150,
-      y: canvas.height-lgPlatformImage.height-block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 11*blockImage.width + 100 + 2*150,
+      x: 2.5*canvas.width + 448/2,
       y: canvas.height-lgPlatformImage.height-block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 12*blockImage.width + 100 + 2*150,
-      y: canvas.height-lgPlatformImage.height-block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 13*blockImage.width + 100 + 2*150,
-      y: canvas.height-lgPlatformImage.height-blockImage.height,
-      image: blockImage,
-      block: true
-    }),
-    // block 123456
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 13*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-blockImage.height,
       image: blockImage,
       block: true
     }),
     new Platform({
-      x: 13.5*canvas.width + 448/2 + 14*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-block2Image.height,
-      image: block2Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 15*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-block3Image.height,
-      image: block3Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 16*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-block4Image.height,
-      image: block4Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 17*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-block5Image.height,
-      image: block5Image,
-      block: true
-    }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 18*blockImage.width + 100 + 2*150 +200,
+      x: 2.5*canvas.width + 448/2 + 5*blockImage.width,
       y: canvas.height-lgPlatformImage.height-block6Image.height,
       image: block6Image,
       block: true
     }),
-    new Platform({
-      x: 13.5*canvas.width + 448/2 + 19*blockImage.width + 100 + 2*150 +200,
-      y: canvas.height-lgPlatformImage.height-block6Image.height,
-      image: block6Image,
-      block: true
-    }),
-
   ]
   genericObjects = [
     new GenericObject({
-      x: 0,
-      y: 0,
+      x: -5,
+      y: -5,
       image: createImage(background)
     }),
-    new GenericObject({
+    /*new GenericObject({
       x: 0,
       y: 30,
       image: createImage(hillsClouds)
-    }) 
+    })*/ 
   ]
 
   scrollOffset = 0

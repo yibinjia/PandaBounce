@@ -11,6 +11,7 @@ import mountains from '../img/level2/mountains.png'
 import lgPlatformLevel2 from '../img/level2/lgPlatform.png'
 import mdPlatformLevel2 from '../img/level2/mdPlatform.png'
 
+
 export const images = {
   levels: {
     1: {

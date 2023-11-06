@@ -35,7 +35,7 @@ export function isOnTopOfPlatform({ object, platform }) {
     object.position.y + object.height <= platform.position.y &&
     object.position.y + object.height + object.velocity.y >=
       platform.position.y &&
-    object.position.x + object.width - 5 >= platform.position.x &&
+    object.position.x + object.width >= platform.position.x &&
     object.position.x + 5 <= platform.position.x + platform.width    //是为了防止出现漂浮情况
   )
 }
